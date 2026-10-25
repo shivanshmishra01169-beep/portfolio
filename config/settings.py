@@ -29,6 +29,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -72,9 +73,6 @@ USE_I18N = True
 USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Contact messages print to the terminal in this demo.
