@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} · {{ site.name }}{% endblock %}
+{% block description %}{{ project.summary }}{% endblock %}
+
+{% block content %}
+<article class="section project">
+  <p class="back"><a href="{% url 'portfolio:home' %}#work">All projects</a></p>
+  <h1>{{ project.title }}</h1>
+  <p class="lead">{{ project.summary }}</p>
+
+  <dl class="facts">
+    <div><dt>Year</dt><dd>{{ project.year }}</dd></div>
+    <div><dt>Built with</dt><dd>{{ project.tech_list|join:", " }}</dd></div>
+  </dl>
+
+  <div class="prose">{{ project.description|linebreaks }}</div>
+
+  {% if project.live_url or project.repo_url %}
+  <p class="actions">
+    {% if project.live_url %}<a class="button" href="{{ project.live_url }}" rel="noopener">Open live site</a>{% endif %}
+    {% if project.repo_url %}<a class="button button-quiet" href="{{ project.repo_url }}" rel="noopener">View source</a>{% endif %}
+  </p>
+  {% endif %}
+</article>
+{% endblock %}

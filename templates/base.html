@@ -1,0 +1,43 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}Portfolio of {{ site.name }}, {{ site.role }}.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="{% url 'portfolio:home' %}">{{ site.name }}</a>
+    <nav aria-label="Main">
+      <a href="{% url 'portfolio:home' %}#work">Work</a>
+      <a href="{% url 'portfolio:home' %}#skills">Skills</a>
+      <a href="{% url 'portfolio:contact' %}">Contact</a>
+    </nav>
+  </header>
+
+  {% if messages %}
+  <div class="messages" role="status">
+    {% for message in messages %}<p class="message message-{{ message.tags }}">{{ message }}</p>{% endfor %}
+  </div>
+  {% endif %}
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {% now "Y" %} {{ site.name }}</p>
+    <p>
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <a href="{{ site.github }}" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+</body>
+</html>
